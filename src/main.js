@@ -11,7 +11,6 @@ function draw() {
   game.draw();
 }
 
-// checks for whenever we press a key
 function keyPressed() {
   game.keyPressed();
 }

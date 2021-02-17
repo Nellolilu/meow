@@ -3,7 +3,7 @@ class Player {
         this.height = WIDTH / 12
         this.width = WIDTH / 12
         this.x = WIDTH / 2.25
-        this.y = HEIGHT - (this.height + 10)
+        this.y = YBORDER
     }
 
    draw() {
@@ -38,4 +38,7 @@ class Player {
       this.x = WIDTH - this.width;
     }
   }
+
+
+  
 }
