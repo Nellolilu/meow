@@ -9,7 +9,7 @@ class ObstacleMany {
 
     draw() {
         fill("pink");
-        this.y += 1;
+        this.y += 0.7;
         // speed   
         ellipse(this.x, this.y, this.width, this.height);
     }
