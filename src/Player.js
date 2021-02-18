@@ -1,9 +1,11 @@
 class Player {
-    constructor() {
+    constructor(startingX, startingY) {
         this.height = WIDTH / 12
         this.width = WIDTH / 12
-        this.x = WIDTH / 2.25
-        this.y = YBORDER
+        // this.x = WIDTH / 2.25
+        // this.y = YBORDER
+        this.x = startingX;
+        this.y = startingY
     }
 
    draw() {

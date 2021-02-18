@@ -8,7 +8,7 @@ class ObstacleBoost {
     
     
         draw() {
-            fill("light-yellow");
+            fill("lightyellow");
             this.y += 1;
             // speed   
             ellipse(this.x, this.y, this.width, this.height);
