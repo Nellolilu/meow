@@ -1,7 +1,7 @@
 
 // ***** BUGS
 // COLLISIONCHECKS ON MANY // Maybe back to old version
-
+// WHY DO I HAVE TO PUT LEVEL THREE IN ORDER BEFORE TWO?
 
 
 // ***** STYLE DECISIONS
@@ -10,6 +10,7 @@
 // CAN YOU CHANGE WIDTH OF CANVAS? CHANGE WIDTH = Make it 1000 and other borders for the Player in other Levels??
 // LEVEL 3 assigning new posion doesnt work with move function
 // LEVEL 3 - unfunction move up & move down?
+
 
 class Game {
 constructor () {
@@ -21,54 +22,43 @@ this.obstaclesMany = [];
 this.many = false;
 this.playersMany = [new Player(50,450), new Player(250, 500), new Player (300,200)];
 this.turbo = false;
-this.level1Background = false;
-this.level2Background= false;
-this.level3Background= true;
+this.level1 = false;
+this.level2 = true;
+this.level3 = false;
 this.enemy = new Enemy ()
-
-
-
-
 }
 
 
   draw() {
     
-    // BASIC SETUP
+    // **********  BASIC SETUP
     clear();
-    // background("yellow");
 
-    // LEVEL 2
-   if(this.level2Background === true) {
-     background("yellow")
-   };
-
-   // LEVEL 3 
-   if(this.level3Background === true) {
-     background("red");
-     this.enemy.draw()
-   
-   }
-
+    // **********  LEVEL 3 
+if (this.level3 === true) {
+  background("red");
+  this.turbo = true;
+  this.player.drawLevel3Skills();
+  // this.player.x = 0;
+  // this.player.y = 60;
+  this.enemy.draw();
   this.player.draw();
+//   if (this.collisionCheck(this.player, this.enemy)) {
+//    console.log("hey");
+//  };
+ if (this.enemy.y + this.enemy.height > this.player.y) {
+   console.log("YAAAY")
+ } 
+}
 
- 
-    
-      // TURBO
-  
+
+      // TURBO CHECK
       if (this.turbo === true) {
         this.player.width = this.exit.height;
         this.player.height = this.exit.height
-  
       }
-  
-
-
-      // **** LEVEL 2
-
 
       // MANY CHECK
-
       if (this.many === true) {
         this.playersMany.forEach((player) => {
           player.draw()
@@ -76,25 +66,23 @@ this.enemy = new Enemy ()
       }
 
 
-    // EXIT
-    if(this.level2Background === true) {
-    this.exit.draw();
-    if (this.collisionCheck(this.player, this.exit)) {
-      console.log("whoop whoop next level is yet to come");
-      if (this.player.height === this.exit.height) {
-        this.level2Background = false; 
-        this.level3Background = true;
-        console.log("YOU REACHED THE NEXT LEVEL")
-      }
-    }
-  }
+    // **********  LEVEL 2
+   if(this.level2 === true) {
+     background("yellow");
+     this.player.draw();
 
-
+     // EXIT
+     this.exit.draw();
+     if (this.collisionCheck(this.player, this.exit)) {
+       console.log("whoop whoop next level is yet to come");
+       if (this.player.height === this.exit.height) {
+         this.level2 = false; 
+         this.level3 = true;
+         console.log("YOU REACHED THE NEXT LEVEL")
+       }
+     }
 
     // OBSTACLESGROW
-
-if (this.level2Background === true) {
-
   if (frameCount === 120 || frameCount % 800 === 0) {
     this.obstaclesGrow.push(new ObstacleGrow());
 };
@@ -112,74 +100,52 @@ this.obstaclesGrow.forEach( (obstacle, index) => {
  this.obstaclesGrow.splice(index, 1);
 });
 
-}
-
-
     // OBSTACLES BOOST
-
-    if (this.level2Background === true) {
-
-    if (frameCount === 12 || frameCount % 1200 === 0) {
-      this.obstaclesBoost.push(new ObstacleBoost());
-    };
-    this.obstaclesBoost.forEach((obstacle, index) => {
-      obstacle.draw();
-      if (this.collisionCheck(this.player, obstacle)) {
-        this.many = false;
-        this.turbo = true;
+      if (frameCount === 12 || frameCount % 1200 === 0) {
+        this.obstaclesBoost.push(new ObstacleBoost());
       };
-      if (obstacle.y >= HEIGHT)
-      this.obstaclesBoost.splice(index, 1);
-    });
-
-    }
-
-        // OBSTACLES MANY
-        // if (this.level2Background === true) {
-
-        // // if ( frameCount === 2000 ||frameCount > 2400 && frameCount % 640 === 0) {
-        // //   this.obstaclesMany.push(new ObstacleMany());
-        // // };
-
-        // // this.obstaclesMany.forEach ((obstacle, index) => {
-        // //   obstacle.draw();
-        // //   if (this.collisionCheck(this.player, obstacle)) {
-        // //     this.player.width =  WIDTH/12;
-        // //     this.player.height = WIDTH/12;
-        // //         // how to say its original?
-        // //     this.many = true;
-        // //     this.turbo = false;
-
-        // //     // // NEW LINE 
-        // //     // this.playersMany.push(this.player);
-        // //     // this.playersMany.forEach((player) => {
-        // //     //   if(this.collisionCheck(player, obstacle)) {
-        // //     //     player.width =  10;
-        // //     //     player.height = 10;
-        // //     //         // how to say its original?
-        // //     //     this.many = true;
-        // //     //     console.log("WWWWWWWWWWWWWORKS")
-        // //     //   }
-        // //     // });
-
-          
-        // //   }
-        // //   if (obstacle.y >= HEIGHT)
-        // //   this.obstaclesMany.splice(index, 1);
-        // // })
-        // }
-
-
-
-// **** LEVEL 3
-
-if (this.level3Background === true) {
-  this.turbo = true;
-  this.player.drawLevel3Skills();
+      this.obstaclesBoost.forEach((obstacle, index) => {
+        obstacle.draw();
+        if (this.collisionCheck(this.player, obstacle)) {
+          this.many = false;
+          this.turbo = true;
+        };
+        if (obstacle.y >= HEIGHT)
+        this.obstaclesBoost.splice(index, 1);
+      });
   
-  // this.player.x = 0;
-  // this.player.y = 60;
+  // OBSTACLES MANY
+        if ( frameCount === 2000 ||frameCount > 2400 && frameCount % 640 === 0) {
+          this.obstaclesMany.push(new ObstacleMany());
+        };
+
+        this.obstaclesMany.forEach ((obstacle, index) => {
+          obstacle.draw();
+          if (this.collisionCheck(this.player, obstacle)) {
+            this.player.width =  WIDTH/12;
+            this.player.height = WIDTH/12;
+                // how to say its original?
+            this.many = true;
+            this.turbo = false;
+
+            // NEW LINE 
+            // this.playersMany.push(this.player);
+            // this.playersMany.forEach((player) => {
+            //   if(this.collisionCheck(player, obstacle)) {
+            //     player.width =  10;
+            //     player.height = 10;
+            //         // how to say its original?
+            //     this.many = true;
+            //     console.log("WWWWWWWWWWWWWORKS")
+            //   }
+            // });
+          }
+          if (obstacle.y >= HEIGHT)
+          this.obstaclesMany.splice(index, 1);
+        })
+
 }
+
 
 
 // **** GENERAL 
@@ -253,10 +219,33 @@ if (this.level3Background === true) {
         isTouchingOnLeft
     )}
 
+    collisionCheckEnemy(player, obstacle) {
+      // const playerTopArea = player.y;
+      // const playerLeftArea = player.x;
+      // const playerRightArea = player.x + player.width;
+      const playerBottomArea = player.y + player.height;
+  
+      const obsTopArea = obstacle.y;
+      // const obsLeftArea = obstacle.x;
+      // const obsRightArea = obstacle.x + obstacle.width;
+      // const obsBottomArea = obstacle.y + obstacle.height;
+  
+  
+      // const isTouchingOnLeft = obsRightArea > playerLeftArea;
+      // const isTouchingOnBottom = obsTopArea < playerBottomArea;
+      // const isTouchingOnRight = obsLeftArea < playerRightArea;
+      const isTouchingOnTop = obsBottomArea > playerTopArea;
+      return (
+          // isTouchingOnBottom &&
+          isTouchingOnTop
+          // isTouchingOnRight &&
+          // isTouchingOnLeft
+      )}
 
   keyPressed() {
-    if (this.level3Background === true) {
+    if (this.level3 === true) {
     this.player.keyPressed();
+    
   }
 }
 
