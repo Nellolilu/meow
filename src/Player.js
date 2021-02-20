@@ -1,7 +1,7 @@
 class Player {
     constructor(startingX, startingY) {
-        this.height = WIDTH / 12
-        this.width =  WIDTH / 12
+        this.height = 40
+        this.width =  40
         // this.x = WIDTH / 2.25
         // this.y = YBORDER
         this.x = startingX;
@@ -10,6 +10,7 @@ class Player {
         this.velocity = -5   
         // check to make a first up then down;
       this.floor = YBORDER
+      this.steps = 300
     }
 
    draw() {
@@ -43,29 +44,58 @@ class Player {
     this.velocity -=5
   }
 
-   moveUp(steps) {
-    this.y -= HEIGHT / steps;
+  //  moveUp(steps) {
+  //   this.y -= HEIGHT / steps;
+  //   if (this.y < 0) {
+  //     this.y = 0;
+  //   }
+  // }
+
+  // moveLeft(steps) {
+  //   this.x -= WIDTH / steps;
+  //   if (this.x < 0) {
+  //     this.x = 0;
+  //   }
+  // }
+
+  // moveDown(steps) {
+  //   this.y += HEIGHT / steps;
+  //   if (this.y + this.height > HEIGHT) {
+  //     this.y = HEIGHT - this.height;
+  //   }
+  // }
+
+  // moveRight(steps) {
+  //   this.x += WIDTH / steps;
+  //   if (this.x + this.width > WIDTH) {
+  //     this.x = WIDTH - this.width;
+  //   }
+  // }
+
+  
+  moveUp() {
+    this.y -= HEIGHT / this.steps;
     if (this.y < 0) {
       this.y = 0;
     }
   }
 
-  moveLeft(steps) {
-    this.x -= WIDTH / steps;
+  moveLeft() {
+    this.x -= WIDTH / this.steps;
     if (this.x < 0) {
       this.x = 0;
     }
   }
 
-  moveDown(steps) {
-    this.y += HEIGHT / steps;
+  moveDown() {
+    this.y += HEIGHT / this.steps;
     if (this.y + this.height > HEIGHT) {
       this.y = HEIGHT - this.height;
     }
   }
 
-  moveRight(steps) {
-    this.x += WIDTH / steps;
+  moveRight() {
+    this.x += WIDTH / this.steps;
     if (this.x + this.width > WIDTH) {
       this.x = WIDTH - this.width;
     }

@@ -12,6 +12,7 @@
 // LEVEL 3 - unfunction move up & move down?
 
 
+
 class Game {
 constructor () {
 this.player = new Player(WIDTH/2.25, YBORDER );
@@ -25,7 +26,8 @@ this.turbo = false;
 this.level1 = false;
 this.level2 = true;
 this.level3 = false;
-this.enemy = new Enemy ()
+this.enemy = new Enemy ();
+
 }
 
 
@@ -43,12 +45,13 @@ if (this.level3 === true) {
   // this.player.y = 60;
   this.enemy.draw();
   this.player.draw();
-//   if (this.collisionCheck(this.player, this.enemy)) {
-//    console.log("hey");
-//  };
- if (this.enemy.y + this.enemy.height > this.player.y) {
-   console.log("YAAAY")
- } 
+  if (this.collisionCheck(this.player, this.enemy)){
+    this.player.steps *=-1
+    console.log("HIT")
+  }
+
+
+ 
 }
 
 
@@ -154,42 +157,43 @@ this.obstaclesGrow.forEach( (obstacle, index) => {
 
       if (keyIsDown(38)) {
         this.playersMany.forEach((player) => {
-          player.moveUp(300)
+          player.moveUp()
         });
+        this.player.moveUp();
         if (this.turbo === true) {
-          this.player.moveUp(100)
-        } else {
-          this.player.moveUp(300);
-        }
+          this.player.steps = 100
       }
+    }
+
       if (keyIsDown(39)) {
         this.playersMany.forEach((player) => {
-          player.moveRight(300)
+          player.moveRight()
         });
+        this.player.moveRight();
         if (this.turbo === true) {
-          this.player.moveRight(100)
-        } else {
-          this.player.moveRight(300);
-        }
+          this.player.steps = 100
+        } 
       }
+
+
       if (keyIsDown(40)) {
         this.playersMany.forEach((player) => {
-          player.moveDown(300)
+          player.moveDown()
         });
+        this.player.moveDown();
         if (this.turbo === true) {
-          this.player.moveDown(100)
-        } else {
-          this.player.moveDown(300);
-        }
+          this.player.steps = 100
+        } 
       }
+
+
       if (keyIsDown(37)) {
         this.playersMany.forEach((player) => {
-          player.moveLeft(300)
+          player.moveLeft()
         });
+        this.player.moveLeft();
         if (this.turbo === true) {
-          this.player.moveLeft(100)
-        }else {
-          this.player.moveLeft(300);
+          this.player.steps = 100
         }
       }
     }
@@ -219,33 +223,42 @@ this.obstaclesGrow.forEach( (obstacle, index) => {
         isTouchingOnLeft
     )}
 
-    collisionCheckEnemy(player, obstacle) {
-      // const playerTopArea = player.y;
-      // const playerLeftArea = player.x;
-      // const playerRightArea = player.x + player.width;
+
+
+    collisionEnemy(player, obstacle) {
+      const playerTopArea = player.y;
+      const playerLeftArea = player.x;
+      const playerRightArea = player.x + player.width;
       const playerBottomArea = player.y + player.height;
   
       const obsTopArea = obstacle.y;
-      // const obsLeftArea = obstacle.x;
-      // const obsRightArea = obstacle.x + obstacle.width;
-      // const obsBottomArea = obstacle.y + obstacle.height;
+      const obsLeftArea = obstacle.x;
+      const obsRightArea = obstacle.x + obstacle.width;
+      const obsBottomArea = obstacle.y + obstacle.height;
   
   
-      // const isTouchingOnLeft = obsRightArea > playerLeftArea;
-      // const isTouchingOnBottom = obsTopArea < playerBottomArea;
-      // const isTouchingOnRight = obsLeftArea < playerRightArea;
+      const isTouchingOnLeft = obsRightArea > playerLeftArea;
+      const isTouchingOnBottom = obsTopArea < playerBottomArea;
+      const isTouchingOnRight = obsLeftArea < playerRightArea;
       const isTouchingOnTop = obsBottomArea > playerTopArea;
-      return (
-          // isTouchingOnBottom &&
-          isTouchingOnTop
-          // isTouchingOnRight &&
-          // isTouchingOnLeft
-      )}
+      
+      if (isTouchingOnRight) {
+        this.player.moveLeft();
+        console.log("IF YOU LOOK HERE, IT DIDNT WORK")
+      }
+
+      };
+
+
+  
+
+
+
+
 
   keyPressed() {
     if (this.level3 === true) {
-    this.player.keyPressed();
-    
+    this.player.keyPressed()
   }
 }
 

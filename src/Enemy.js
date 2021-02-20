@@ -6,7 +6,7 @@ class Enemy {
         // this.height = -100
         // this.width = 20
         this.x = 200
-        this.y = 400        
+        this.y = 500        
         this.height = 100
         this.width = 20
     
