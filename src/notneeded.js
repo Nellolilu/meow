@@ -32,3 +32,13 @@
 
   //   }
   // }
+
+
+        // this.enemy.draw();
+  // if (this.collisionCheck(this.player, this.enemy)) {
+  //   this.player.steps *= -1;
+  //   if (this.player.y = 500 && this.player.x >=200 && this.player.x <= 300) {
+  //     console.log("HIT")
+  //     this.player.y = 500
+  //   }
+  // }

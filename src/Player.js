@@ -1,25 +1,25 @@
 class Player {
-    constructor(startingX, startingY) {
-        this.height = 40
-        this.width =  40
-        // this.x = WIDTH / 2.25
-        // this.y = YBORDER
-        this.x = startingX;
-        this.y = startingY;
-        this.jumpCount = 0
-        this.velocity = -5   
-        // check to make a first up then down;
-      this.floor = YBORDER
-      this.steps = 300
-    }
+  constructor(startingX, startingY) {
+    this.height = 40;
+    this.width = 40;
+    // this.x = WIDTH / 2.25
+    // this.y = YBORDER
+    this.x = startingX;
+    this.y = startingY;
+    this.jumpCount = 0;
+    this.velocity = 0;
+    // check to make a first up then down;
+    this.floor = YBORDER
+    this.steps = 300;
+    this.color = "white"
+  }
 
-   draw() {
-    fill("white");   
+  draw() {
+    fill(this.color);
     rect(this.x, this.y, this.width, this.height);
-   } 
+  }
 
-
-   drawLevel3Skills () {
+  drawLevel3Skills() {
     this.velocity += GRAVITY;
     this.y += this.velocity;
     if (this.y >= this.floor) {
@@ -27,9 +27,9 @@ class Player {
       this.velocity = 0;
       this.jumpCount = 0;
     }
-   }
+  }
 
-   keyPressed() {
+  keyPressed() {
     if (keyCode === 32) {
       this.jump();
     }
@@ -37,42 +37,14 @@ class Player {
 
   jump() {
     if (this.jumpCount === 3) {
-      return
+      return;
     }
-    this.jumpCount ++;
+    this.jumpCount++;
     this.y -= 10;
-    this.velocity -=5
+    this.velocity -= 5;
   }
 
-  //  moveUp(steps) {
-  //   this.y -= HEIGHT / steps;
-  //   if (this.y < 0) {
-  //     this.y = 0;
-  //   }
-  // }
 
-  // moveLeft(steps) {
-  //   this.x -= WIDTH / steps;
-  //   if (this.x < 0) {
-  //     this.x = 0;
-  //   }
-  // }
-
-  // moveDown(steps) {
-  //   this.y += HEIGHT / steps;
-  //   if (this.y + this.height > HEIGHT) {
-  //     this.y = HEIGHT - this.height;
-  //   }
-  // }
-
-  // moveRight(steps) {
-  //   this.x += WIDTH / steps;
-  //   if (this.x + this.width > WIDTH) {
-  //     this.x = WIDTH - this.width;
-  //   }
-  // }
-
-  
   moveUp() {
     this.y -= HEIGHT / this.steps;
     if (this.y < 0) {
@@ -100,7 +72,4 @@ class Player {
       this.x = WIDTH - this.width;
     }
   }
-
-
-  
 }

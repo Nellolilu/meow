@@ -1,7 +1,7 @@
 class Exit {
     constructor() {
         this.height = WIDTH /24
-        this.width = WIDTH / 24
+        this.width = WIDTH / 2
         this.x = WIDTH-10
         this.y = 60
     }
