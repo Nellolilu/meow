@@ -27,13 +27,13 @@ class Game {
     ];
     this.turbo = false;
     this.level1 = false;
-    this.level2 = false;
-    this.level3 = true;
+    this.level2 = true;
+    this.level3 = false;
     this.enemys = [new Enemy(200, 200)];
     this.round1 = true;
     this.round2 = false;
-    this.round3 = false
-    this.loose = false
+    this.round3 = false;
+    this.loose = false;
   }
 
   draw() {
@@ -45,7 +45,6 @@ class Game {
       background("gray");
       this.player.draw();
       this.player.color = "yellow";
-
     }
 
     // **********  LEVEL 2
@@ -139,89 +138,120 @@ class Game {
       this.arrowDown();
 
       // ******** LEVEL3 ROUND 1
-
       if (this.round1 === true) {
         this.enemys.forEach((enemy) => {
           enemy.draw();
+          if (this.collisionCheck(this.player, enemy)) {
+            console.log("HIT");
+            this.enemys.splice(0, 1);
+            this.enemys.push(new Enemy(50, 100));
+            this.enemys.push(new Enemy(200, 100));
+            this.enemys.push(new Enemy(350, 100));
+            this.round1 = false;
+            this.round2 = true;
+          }
         });
-
-        if (this.collisionCheck(this.player, this.enemys[0])) {
-          console.log("HIT");
-          this.enemys.splice(0, 1);
-          this.enemys.push(new Enemy(50, 100));
-          this.enemys.push(new Enemy(200, 100));
-          this.enemys.push(new Enemy(350, 100));
-
-          this.round1 = false;
-          this.round2 = true;
-        }
       }
 
       // ******** LEVEL3 ROUND 2
 
       if (this.round2 === true) {
-
-        this.enemys.forEach((enemy) => {
-          enemy.draw();
-        });
-
+        // Draw & Collisioncheck
         this.enemys.forEach((enemy, index) => {
+          enemy.draw();
           if (this.collisionCheck(this.player, enemy)) {
             console.log("HIT");
             this.enemys.splice(index, 1);
           }
         });
-
-    
-        // if (this.player.scoreJump % 16 === 0){
-        //   this.enemys.forEach((enemy) => {
-        //       enemy.moveToCenter()
-        //       })
-        // }
-    
-        if (frameCount %60 === 0) {
+        // move to center
+        if (frameCount % 60 === 0) {
           this.enemys.forEach((enemy) => {
-              enemy.moveToCenter(); 
-              })
-        };
-
-        this.enemys.forEach((enemy) => {
-        if (enemy.y === 250) {
-                console.log("YOU LOST");
-                enemy.col = "yellow"
-                if (this.enemys.length >1 ) {
-                  this.enemys.splice(0,1)
-                }
-                this.loose = true;
-                this.round2 = false
+            enemy.moveToCenter();
+            // merge // HERE MYBE THE REDUCE??
+            if (enemy.y === 250) {
+              if (this.enemys.length > 1) {
+                this.enemys.splice(0, 1);
               }
-            })
+              if (this.enemys.length >= 1) {
+                console.log("YOU LOST");
+                enemy.col = "yellow";
+                this.loose = true;
+                this.round2 = false;
+              }
+            }
+          });
+        }
+        if (this.enemys.length <= 0) {
+          this.enemys.push(new Enemy(50, 100));
+          this.enemys.push(new Enemy(200, 100));
+          this.enemys.push(new Enemy(350, 100));
+          this.enemys.push(new Enemy(100, 80));
+          this.enemys.push(new Enemy(150, 80));
+          this.enemys.push(new Enemy(250, 80));
+          this.round2 = false;
+          this.round3 = true;
+        }
       }
+
+      // ******** LEVEL3 ROUND 3
+
+      if (this.round3 === true) {
+        // Draw & Collisioncheck
+        this.enemys.forEach((enemy, index) => {
+          enemy.draw();
+          if (this.collisionCheck(this.player, enemy)) {
+            console.log("HIT");
+            this.enemys.splice(index, 1);
+          }
+        });
+        // move to center
+        if (frameCount % 60 === 0) {
+          this.enemys.forEach((enemy) => {
+            enemy.moveToCenter();
+            // merge // HERE MYBE THE REDUCE??
+            if (enemy.y === 250) {
+              if (this.enemys.length > 1) {
+                this.enemys.splice(0, 1);
+              }
+              if (this.enemys.length >= 1) {
+                console.log("YOU LOST");
+                enemy.col = "yellow";
+                this.loose = true;
+                this.round3 = false;
+              }
+              // if (this.enemys.length === 0) {
+              //   // this.round2 = false;
+              //   // this.round3 = true
+              // };
+            }
+          });
+        }
+      }
+
       console.log(this.player.scoreJump);
-      console.log(this.enemys)
+      console.log(this.enemys);
+      console.log(frameCount);
+
+      // LOOSE
+
+      if (this.loose === true) {
+        this.enemys.forEach((enemy) => {
+          enemy.draw();
+          if (enemy.width < 300) {
+            enemy.x = 50;
+            enemy.height++;
+            enemy.width++;
+            frameCount = 0;
+          }
+          if (frameCount >= 90) {
+            enemy.y = 290;
+          }
+        });
+      }
+
+      // LEVEL 3 closer:
     }
-
-    // LOOSE
-
-    if (this.loose === true) {
-    this.enemys.forEach((enemy) => {
-      enemy.draw();
-      enemy.height = 300;
-      enemy.width = 300;
-      enemy.y = 100;
-      enemy.x = 50
-
-    });
-
-    if (frameCount >= 600) {
-      this.enemys.forEach((enemy) => {
-        enemy.y += 200 
-      });
-    }
-
-
-  }
-    // ******** LEVEL3 ROUND 2
 
     // ************************************* GENERAL
 
@@ -312,6 +342,4 @@ class Game {
       this.player.keyPressed();
     }
   }
-
-
 }
