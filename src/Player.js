@@ -74,4 +74,22 @@ class Player {
       this.x = WIDTH - this.width;
     }
   }
+
+
+
+  moveToCenter() {
+    if (this.y > 300) {
+      this.y -= 10;
+    }
+    if (this.x < 200) {
+      this.x +=10
+    }
+    if (this.y < 300) {
+      this.y += 10
+    }
+    if (this.x > 200) {
+      this.x -=10
+    }
+  }
+
 }
