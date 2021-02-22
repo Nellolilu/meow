@@ -12,6 +12,7 @@ class Player {
     this.floor = YBORDER
     this.steps = 300;
     this.color = "white"
+    this.scoreJump = 0
   }
 
   draw() {
@@ -32,6 +33,7 @@ class Player {
   keyPressed() {
     if (keyCode === 32) {
       this.jump();
+      this.scoreJump +=1
     }
   }
 

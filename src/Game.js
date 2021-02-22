@@ -8,11 +8,9 @@
 // Check out dom Manipulation
 
 // ***** STYLE DECISIONS
-// LET OBSTACLE DISSAPREAR AFTER COLISION?    this.obstaclesGrow.splice(index, 1);
+// Player is coming down from left
 // CHANGE TIMING OF OBSTACLES: first framecount, then pace, a random?
 // CAN YOU CHANGE WIDTH OF CANVAS? CHANGE WIDTH = Make it 1000 and other borders for the Player in other Levels??
-// LEVEL 3 assigning new posion doesnt work with move function
-// LEVEL 3 - unfunction move up & move down?
 
 class Game {
   constructor() {
@@ -31,7 +29,9 @@ class Game {
     this.level1 = false;
     this.level2 = true;
     this.level3 = false;
-    this.enemy = new Enemy();
+    this.enemys = [new Enemy(200, 200)];
+    this.round1 = true;
+    this.round2 = false;
   }
 
   draw() {
@@ -117,20 +117,7 @@ class Game {
           this.player.height = 40;
           this.many = true;
           this.turbo = false;
-
-          // NEW LINE
-          // this.playersMany.push(this.player);
-          // this.playersMany.forEach((player) => {
-          //   if(this.collisionCheck(player, obstacle)) {
-          //     player.width =  10;
-          //     player.height = 10;
-          //         // how to say its original?
-          //     this.many = true;
-          //     console.log("WWWWWWWWWWWWWORKS")
-          //   }
-          // });
         }
-
         this.playersMany.forEach((player) => {
           if (this.collisionCheck(player, obstacle)) {
             this.many = false;
@@ -145,16 +132,46 @@ class Game {
       background("red");
       this.turbo = true;
       this.player.drawLevel3Skills();
-      // this.player.x = 0;
-      // this.player.y = 60;
       this.player.draw();
-      this.enemy.draw();
       this.arrowDown();
-      if (this.collisionCheck(this.player, this.enemy)) {
-        console.log("HIT");
-        this.enemy.col = "yellow";
+
+      // ******** LEVEL3 ROUND 1
+
+      if (this.round1 === true) {
+        this.enemys.forEach((enemy) => {
+          enemy.draw();
+        });
+
+        if (this.collisionCheck(this.player, this.enemys[0])) {
+          console.log("HIT");
+          this.enemys.splice(0, 1);
+          this.enemys.push(new Enemy(50, 100));
+          this.enemys.push(new Enemy(200, 100));
+          this.enemys.push(new Enemy(350, 100));
+          this.round1 = false;
+          this.round2 = true;
+        }
       }
+
+      // ******** LEVEL3 ROUND 2
+
+      if (this.round2 === true) {
+        this.enemys.forEach((enemy) => {
+          enemy.draw();
+        });
+        this.enemys.forEach((enemy, index) => {
+          if (this.collisionCheck(this.player, enemy)) {
+            console.log("HIT");
+            this.enemys.splice(index, 1);
+          }
+        });
+      }
+      console.log(this.player.scoreJump);
+      console.log(this.enemys)
     }
+
+
+    // ******** LEVEL3 ROUND 2
 
     // ************************************* GENERAL
 
@@ -239,13 +256,6 @@ class Game {
       isTouchingOnLeft
     );
   }
-
-  // collisionEnemy(player, obstacle) {
-  //   const playerBottomArea = player.y + player.height;
-  //   const obsTopArea = obstacle.y;
-  //   const isTouchingOnBottom = obsTopArea < playerBottomArea;
-  //   return isTouchingOnBottom;
-  // }
 
   keyPressed() {
     if (this.level3 === true) {
