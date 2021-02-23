@@ -4,7 +4,7 @@ class Enemy {
     this.y = startingY;
     this.height = 20;
     this.width = 20;
-    this.col = "orange";
+    this.col = "yellow";
   }
 
   draw() {
@@ -15,13 +15,13 @@ class Enemy {
 
   moveToCenter() {
     if (this.y > 300) {
-      this.y -= 10;
+      this.y -= 15;
     }
     if (this.x < 200) {
       this.x +=10
     }
     if (this.y < 300) {
-      this.y += 10
+      this.y += 15
     }
     if (this.x > 200) {
       this.x -=10

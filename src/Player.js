@@ -12,7 +12,6 @@ class Player {
     this.velocity = 0;
     // check to make a first up then down;
     this.floor = YBORDER
-    this.steps = 300;
     this.color = "white"
     this.scoreJump = 0
   }
@@ -56,29 +55,29 @@ class Player {
   }
 
 
-  moveUp() {
-    this.y -= HEIGHT / this.steps;
+  moveUp(steps) {
+    this.y -= HEIGHT / steps;
     if (this.y < 0) {
       this.y = 0;
     }
   }
 
-  moveLeft() {
-    this.x -= WIDTH / this.steps;
+  moveLeft(steps) {
+    this.x -= WIDTH / steps;
     if (this.x < 0) {
       this.x = 0;
     }
   }
 
-  moveDown() {
-    this.y += HEIGHT / this.steps;
+  moveDown(steps) {
+    this.y += HEIGHT / steps;
     if (this.y + this.height > HEIGHT) {
       this.y = HEIGHT - this.height;
     }
   }
 
-  moveRight() {
-    this.x += WIDTH / this.steps;
+  moveRight(steps) {
+    this.x += WIDTH / steps;
     if (this.x + this.width > WIDTH) {
       this.x = WIDTH - this.width;
     }
