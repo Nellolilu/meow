@@ -13,12 +13,11 @@ class Player {
     // check to make a first up then down;
     this.floor = YBORDER
     this.color = "white"
-    // this.scoreJump = 0
   }
 
   draw() {
     fill(this.color);
-    rect(this.x, this.y, this.width, this.height);
+    image(kitty, this.x, this.y, this.width, this.height);
   };
 
   origin() {

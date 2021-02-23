@@ -11,6 +11,6 @@ class ObstacleGrow {
     draw() {
         fill(this.color);
         this.y += 0.5;
-        rect(this.x, this.y, this.width, this.height);
+        image(steak, this.x, this.y, this.width, this.height);
     }
 }
