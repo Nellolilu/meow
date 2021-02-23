@@ -1,44 +1,54 @@
+
+
 // ***** BUGS
-// Startingpositions
 // Change back the speed / turbo doesnt work
-// MANY SMALLER
 
 // create buttons & Pictures for info & Score & so on
-// Pictures
 // Check out dom Manipulation
 
 // ***** STYLE DECISIONS
+
+// MANY are moved before seen - maybe make a different class, and new Push or even create a back to origin function
 // Player is coming down from left
-// CHANGE TIMING OF OBSTACLES: first framecount, then pace, a random?
 // CAN YOU CHANGE WIDTH OF CANVAS? CHANGE WIDTH = Make it 1000 and other borders for the Player in other Levels??
 
 class Game {
   constructor() {
-    this.player = new Player(WIDTH / 2.25, YBORDER);
+    this.player = new Player(180, 520);
     this.exit = new Exit();
     this.obstaclesGrow = [];
     this.obstaclesBoost = [];
     this.obstaclesMany = [];
     this.many = false;
     this.playersMany = [
-      new Player(50, 450),
-      new Player(250, 500),
-      new Player(300, 200),
+      new Player(100, 550),
+      new Player(150, 600),
+      new Player(300, 550),
     ];
+    this.test = [new Player(100, 100)];
     this.turbo = false;
     this.level1 = false;
     this.level2 = true;
     this.level3 = false;
-    this.enemys = [new Enemy(200, 200)];
+    this.enemys = [new Enemy(180, 200)];
     this.round1 = true;
     this.round2 = false;
     this.round3 = false;
     this.loose = false;
+
   }
 
   draw() {
     // **********  BASIC SETUP
     clear();
+
+    console.log("ScoreJump:" + this.player.scoreJump);
+    console.log("Enemys:" + this.enemys.length);
+    console.log("Framecount:" + frameCount);
+    console.log("ObstaclesMany:" + this.obstaclesGrow.length);
+    console.log("ObstaclesGrow:" + this.obstaclesGrow.length);
+    console.log("ObstaclesBoots:" + this.obstaclesBoost.length);
+    console.log("PlayersMany:" + this.playersMany.length);
 
     // ********** LEVEL 1
     if (this.level1 === true) {
@@ -80,7 +90,8 @@ class Game {
         /// HERE TRY
         this.playersMany.forEach((player) => {
           if (this.collisionCheck(player, obstacle)) {
-            this.many = false;
+            if (player.width < XBORDER) player.width++;
+            player.height = player.width;
           }
         });
         /////
@@ -88,7 +99,7 @@ class Game {
       });
 
       // OBSTACLES BOOST
-      if (frameCount === 12 || frameCount % 1200 === 0) {
+      if (frameCount === 1200 || frameCount % 1200 === 0) {
         this.obstaclesBoost.push(new ObstacleBoost());
       }
       this.obstaclesBoost.forEach((obstacle, index) => {
@@ -101,6 +112,7 @@ class Game {
         this.playersMany.forEach((player) => {
           if (this.collisionCheck(player, obstacle)) {
             this.many = false;
+            this.turbo = true;
           }
         });
         /////
@@ -120,9 +132,10 @@ class Game {
           this.many = true;
           this.turbo = false;
         }
-        this.playersMany.forEach((player) => {
-          if (this.collisionCheck(player, obstacle)) {
-            this.many = false;
+        this.playersMany.forEach((playerMany) => {
+          if (this.collisionCheck(playerMany, obstacle)) {
+            playerMany.width = 40;
+            playerMany.height = 40;
           }
         });
         if (obstacle.y >= HEIGHT) this.obstaclesMany.splice(index, 1);

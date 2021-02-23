@@ -1,9 +1,10 @@
 class Exit {
     constructor() {
-        this.height = WIDTH /24
-        this.width = WIDTH / 2
-        this.x = WIDTH-10
+        this.x = WIDTH-5
         this.y = 60
+        this.width = 5
+        this.height = 20
+
     }
 
     draw() {

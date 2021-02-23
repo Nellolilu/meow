@@ -1,11 +1,13 @@
 class Player {
   constructor(startingX, startingY) {
-    this.height = 40;
-    this.width = 40;
+
+  
     // this.x = WIDTH / 2.25
     // this.y = YBORDER
     this.x = startingX;
     this.y = startingY;
+    this.width = 40;
+    this.height = 40;
     this.jumpCount = 0;
     this.velocity = 0;
     // check to make a first up then down;
@@ -18,7 +20,14 @@ class Player {
   draw() {
     fill(this.color);
     rect(this.x, this.y, this.width, this.height);
+  };
+
+  origin() {
+    this.x = startingX;
+    this.y = startingY
   }
+
+
 
   drawLevel3Skills() {
     this.velocity += GRAVITY;
