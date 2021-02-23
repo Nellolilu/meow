@@ -13,7 +13,7 @@ class Player {
     // check to make a first up then down;
     this.floor = YBORDER
     this.color = "white"
-    this.scoreJump = 0
+    // this.scoreJump = 0
   }
 
   draw() {
@@ -41,7 +41,7 @@ class Player {
   keyPressed() {
     if (keyCode === 32) {
       this.jump();
-      this.scoreJump +=1
+      game.score +=1
     }
   }
 
