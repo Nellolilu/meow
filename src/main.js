@@ -2,17 +2,17 @@ const game = new Game();
 
 function preload() {
   // ENEMY
-  jabba = loadImage("./assets/taube.gif");
+  jabba = loadImage("./assets/pig.png");
 
   // OBSTACLES
-  steak = loadImage("./assets/ratte.jpg");
+  steak = loadImage("./assets/rat1.png");
   pill = loadImage("./assets/fish.png");
   keys = loadImage("./assets/platformPack_item014.png");
 
   // BACKGROUND
 
   bgImage = loadImage("./assets/street.png");
-  level2Image = loadImage("./assets/platformPack_item014.png");
+  level2Image = loadImage("./assets/bg2.png");
 
   // KATZE
 
@@ -35,8 +35,8 @@ function preload() {
   vorne1 = loadImage("./assets/kVorne1.png");
   vorne2 = loadImage("./assets/kVorne2.png");
   vorne1f = loadImage("./assets/kVorne1.png");
-  // sound1 = loadSound("./assets/level1_opt1.mp3");
-  // sound2 = loadSound("./assets/level2_opt1.mp3");
+  sound1 = loadSound("./assets/level1_opt1.mp3");
+  sound2 = loadSound("./assets/level2_opt1.mp3");
 
   // sequenceAnimation = loadAnimation("./assets/kHinten1.png", "./assets/kHinten2.png");
   // glitch = loadAnimation("data/dog.png", "data/horse.png", "data/cat.png", "data/snake.png");
@@ -45,8 +45,9 @@ function preload() {
 function setup() {
   let canvas = createCanvas(WIDTH, HEIGHT);
   canvas.parent("canvas");
-  // sound1.play();
-  // sound1.setVolume(0.5);
+  sound1.play();
+  sound1.setVolume(0.5);
+
   // sound1.stop();
   // sound2.play();
   // sound2.stop()
@@ -61,3 +62,10 @@ function draw() {
 function keyPressed() {
   game.keyPressed();
 }
+
+// soundSwitch(){
+//   if (game.level3 === true) {
+//     sound1.stop();
+//   sound2.play();
+//   }
+// }

@@ -2,8 +2,8 @@ class ObstacleBoost {
         constructor() {
             this.x = random(0, WIDTH-10);
             this.y = 0;
-            this.width = 40
-            this.height = 40
+            this.width = 45
+            this.height = 45
 
         }
 
@@ -13,7 +13,7 @@ class ObstacleBoost {
             this.y += 1;
             // speed
             // ellipse(this.x, this.y, this.width, this.height);
-            image(jabba, this.x, this.y, this.width, this.height);
+            image(keys, this.x, this.y, this.width, this.height);
 
 
 

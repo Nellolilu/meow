@@ -20,6 +20,7 @@ let fogo
 let lock 
 let pill 
 let bgImage
+let level2Image
 
 let hinten1
 let hinten1f

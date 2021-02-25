@@ -39,14 +39,12 @@ class Game {
     this.speed = 0;
     this.score = 0;
     this.won = false;
-    this.image = true
+    this.image = true;
   }
 
   draw() {
     // **********  BASIC SETUP
     clear();
-
-
 
     this.scoreTrack();
     if (frameCount % 60 === 0) {
@@ -70,7 +68,6 @@ class Game {
     // **********  LEVEL 2
     if (this.level2 === true) {
       this.background.draw();
-      // background("yellow") 
       this.player.draw();
       if (this.loose === false) {
         this.arrowDown();
@@ -111,6 +108,7 @@ class Game {
           this.many = false;
           if (this.player.width < XBORDER) this.player.width++;
           this.player.height = this.player.width;
+          console.log("Ups");
           shitShat.innerText = "Ups";
           this.turbo = false;
         }
@@ -119,16 +117,16 @@ class Game {
           if (this.collisionCheck(player, obstacle)) {
             if (player.width < XBORDER) player.width++;
             player.height = player.width;
+            console.log("This is anoying");
             shitShat.innerText = "This is anoying";
           }
         });
         /////
         if (obstacle.y >= HEIGHT) this.obstaclesGrow.splice(index, 1);
       });
-
       // OBSTACLES BOOST
       if (
-        frameCount % 120 === 0 ||
+        frameCount % 1200 === 0 ||
         (frameCount > 1200 && frameCount % 400 === 0)
       ) {
         this.obstaclesBoost.push(new ObstacleBoost());
@@ -138,6 +136,7 @@ class Game {
         if (this.collisionCheck(this.player, obstacle)) {
           this.many = false;
           this.turbo = true;
+          console.log("quick, MOVE!");
           shitShat.innerText = "quick, MOVE!";
         }
         /// HERE TRY
@@ -145,13 +144,13 @@ class Game {
           if (this.collisionCheck(player, obstacle)) {
             this.many = false;
             this.turbo = true;
+            console.log("there is the right guy!");
             shitShat.innerText = "there is the right guy!";
           }
         });
         /////
         if (obstacle.y >= HEIGHT) this.obstaclesBoost.splice(index, 1);
       });
-
       // OBSTACLES MANY
       if (
         (frameCount > 24 && frameCount % 640 === 0) ||
@@ -159,7 +158,6 @@ class Game {
       ) {
         this.obstaclesMany.push(new ObstacleMany());
       }
-
       this.obstaclesMany.forEach((obstacle, index) => {
         obstacle.draw();
         if (this.collisionCheck(this.player, obstacle)) {
@@ -167,12 +165,14 @@ class Game {
           this.player.height = 40;
           this.many = true;
           this.turbo = false;
+          console.log("AWWW - who am I");
           shitShat.innerText = "AWWW - who am I";
         }
         this.playersMany.forEach((playerMany) => {
           if (this.collisionCheck(playerMany, obstacle)) {
             playerMany.width = 40;
             playerMany.height = 40;
+            console.log("who is how??? Go for the pill please!");
             shitShat.innerText = "who is how??? Go for the pill please!";
           }
         });
@@ -182,10 +182,13 @@ class Game {
 
     // **********  LEVEL 3
     if (this.level3 === true) {
+      this.background.draw();
+      bgImage = level2Image;
+      this.player.width = 40;
+      this.player.height = 40;
       shitShat.innerText = "HIT THE THINGY, JUMPING IS HELPFUL. USE SPACE.";
       sides.style.display = "none";
       sides2.style.display = "none";
-      bgImage = level2Image;
       this.turbo = true;
       this.player.drawLevel3Skills();
       this.player.draw();
@@ -260,6 +263,10 @@ class Game {
             this.enemys.splice(index, 1);
           }
         });
+        if (this.enemys.length < 5 && this.enemys.length > 2) {
+          this.enemys.push(new Enemy(310, 100));
+          this.enemys.push(new Enemy(280, 130));
+        }
         // move to center
         if (frameCount % 30 === 0) {
           this.enemys.forEach((enemy) => {
@@ -303,7 +310,7 @@ class Game {
             frameCount = 0;
           }
           if (frameCount >= 120) {
-            enemy.y = 290;
+            enemy.y = 350;
           }
         });
       }
@@ -442,7 +449,7 @@ class Game {
     }
     // can be a switch? dont know, forgot again
     if (this.level3 === true) {
-      score.innerText = "SCORE: "+ this.score;
+      score.innerText = "SCORE: " + this.score;
     }
 
     if (frameCount % 60 === 0 && this.loose === false && this.won === false) {
@@ -451,12 +458,12 @@ class Game {
     }
   }
 
-//   changePicture() {
-//     if (kitty === hinten1) {
-//       kitty = hinten2;
-//     }
-//     if (kitty === hinten2) {
-//       kitty = hinten2;
-//     }
-//   }
+  //   changePicture() {
+  //     if (kitty === hinten1) {
+  //       kitty = hinten2;
+  //     }
+  //     if (kitty === hinten2) {
+  //       kitty = hinten2;
+  //     }
+  //   }
 }
