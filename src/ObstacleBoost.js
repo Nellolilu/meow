@@ -13,7 +13,11 @@ class ObstacleBoost {
             this.y += 1;
             // speed
             // ellipse(this.x, this.y, this.width, this.height);
-            image(keys, this.x, this.y, this.width, this.height);
+            image(jabba, this.x, this.y, this.width, this.height);
+
+
+
+
             
         }
 

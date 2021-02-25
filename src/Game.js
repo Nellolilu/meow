@@ -39,15 +39,17 @@ class Game {
     this.speed = 0;
     this.score = 0;
     this.won = false;
+    this.image = true
   }
 
   draw() {
     // **********  BASIC SETUP
     clear();
 
+
+
     this.scoreTrack();
     if (frameCount % 60 === 0) {
-      this.changePicture();
     }
 
     // console.log("ScoreJump:" + this.player.scoreJump);
@@ -68,6 +70,7 @@ class Game {
     // **********  LEVEL 2
     if (this.level2 === true) {
       this.background.draw();
+      // background("yellow") 
       this.player.draw();
       if (this.loose === false) {
         this.arrowDown();
@@ -335,11 +338,8 @@ class Game {
   arrowDown() {
     // KEY IS DOWN
     if (keyIsDown(38)) {
-      if (frameCount % 50 === 0) {
-        hinten1 = hinten2;
-      }
       if (frameCount % 30 === 0) {
-        hinten1 = hinten1;
+        hinten1 = hinten2;
       }
       this.playersMany.forEach((player) => {
         player.moveUp(300);
@@ -351,6 +351,9 @@ class Game {
       }
     }
     if (keyIsDown(39)) {
+      if (frameCount % 30 === 0) {
+        rechts1 = rechts2;
+      }
       this.playersMany.forEach((player) => {
         player.moveRight(300);
       });
@@ -361,6 +364,9 @@ class Game {
       }
     }
     if (keyIsDown(40)) {
+      if (frameCount % 30 === 0) {
+        vorne1 = vorne2;
+      }
       this.playersMany.forEach((player) => {
         player.moveDown(300);
       });
@@ -371,6 +377,9 @@ class Game {
       }
     }
     if (keyIsDown(37)) {
+      if (frameCount % 30 === 0) {
+        links1 = links2;
+      }
       this.playersMany.forEach((player) => {
         player.moveLeft(300);
       });
@@ -442,12 +451,12 @@ class Game {
     }
   }
 
-  changePicture() {
-    if (kitty === hinten1) {
-      kitty = hinten2;
-    }
-    if (kitty === hinten2) {
-      kitty = hinten2;
-    }
-  }
+//   changePicture() {
+//     if (kitty === hinten1) {
+//       kitty = hinten2;
+//     }
+//     if (kitty === hinten2) {
+//       kitty = hinten2;
+//     }
+//   }
 }

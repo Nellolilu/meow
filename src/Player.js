@@ -12,20 +12,36 @@ class Player {
     this.velocity = 0;
     // check to make a first up then down;
     this.floor = YBORDER
+    this.image = true
     // this.color = "white"
   }
 
   draw() {
     // fill(this.color);
+  
     image(kitty, this.x, this.y, this.width, this.height);
-    // animation(sequenceAnimation, 100, 100)
-    // image(kittyGif, this.x, this.y)
+
+    if (frameCount % 15 == 0) {
+      console.log("change")
+      this.image = !this.image; 
+      if (this.image) {
+        hinten1 = hinten2;
+        vorne1 = vorne2;
+        rechts1 = rechts2;
+        links1 = links2
+
+      } else {
+        hinten1 = hinten1f;
+        vorne1 = vorne1f
+        rechts1 = rechts1f;
+        links1 = links1f
+      }
+    };
+
+
+
   };
 
-  // origin() {
-  //   this.x = startingX;
-  //   this.y = startingY
-  // }
 
 
 
