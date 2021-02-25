@@ -12,18 +12,20 @@ class Player {
     this.velocity = 0;
     // check to make a first up then down;
     this.floor = YBORDER
-    this.color = "white"
+    // this.color = "white"
   }
 
   draw() {
-    fill(this.color);
+    // fill(this.color);
     image(kitty, this.x, this.y, this.width, this.height);
+    // animation(sequenceAnimation, 100, 100)
+    // image(kittyGif, this.x, this.y)
   };
 
-  origin() {
-    this.x = startingX;
-    this.y = startingY
-  }
+  // origin() {
+  //   this.x = startingX;
+  //   this.y = startingY
+  // }
 
 
 
@@ -55,6 +57,7 @@ class Player {
 
 
   moveUp(steps) {
+    kitty = hinten1 
     this.y -= HEIGHT / steps;
     if (this.y < 0) {
       this.y = 0;
@@ -62,6 +65,7 @@ class Player {
   }
 
   moveLeft(steps) {
+    kitty = rechts1
     this.x -= WIDTH / steps;
     if (this.x < 0) {
       this.x = 0;
@@ -69,6 +73,7 @@ class Player {
   }
 
   moveDown(steps) {
+    kitty = vorne1
     this.y += HEIGHT / steps;
     if (this.y + this.height > HEIGHT) {
       this.y = HEIGHT - this.height;
@@ -76,6 +81,7 @@ class Player {
   }
 
   moveRight(steps) {
+    kitty = links1
     this.x += WIDTH / steps;
     if (this.x + this.width > WIDTH) {
       this.x = WIDTH - this.width;

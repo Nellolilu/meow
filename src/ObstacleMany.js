@@ -2,8 +2,8 @@ class ObstacleMany {
     constructor() {
         this.x = random(0, WIDTH-10);
         this.y = 0;
-        this.width = 30
-        this.height = 30
+        this.width = 50
+        this.height = 20
 
     }
 
@@ -12,7 +12,7 @@ class ObstacleMany {
         fill("pink");
         this.y += 0.7;
         // speed   
-        ellipse(this.x, this.y, this.width, this.height);
+        image(pill, this.x, this.y, this.width, this.height);
     }
 
 

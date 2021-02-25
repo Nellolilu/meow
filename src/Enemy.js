@@ -2,14 +2,14 @@ class Enemy {
   constructor(startingX, startingY) {
     this.x = startingX;
     this.y = startingY;
-    this.height = 20;
-    this.width = 20;
+    this.height = 40;
+    this.width = 40;
     this.col = "yellow";
   }
 
   draw() {
     fill(this.col);
-    image(jabba, this.x, this.y, this.width, this.height);
+    image(diamond, this.x, this.y, this.width, this.height);
   }
 
 
@@ -29,7 +29,4 @@ class Enemy {
   }
 
 
-  // setRandomposition() {
-  //   this.x =
-  // }
 }

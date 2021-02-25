@@ -9,28 +9,34 @@
   </head>
   <body>
     <section id="main-section">
-        <h1>GAME</h1>
-          <div id="canvas"></div>
+      <img src="./assets/start.png" class="startscreen">
+      <section class="side-bar">
+        <article class="score">
+          <h3>LEVEL: <span id="level"></span></h3>
+          <h3>SPEED: <span id="speed"></span></h3>
+          <h3>SCORE: <span id="score"></span></h3>
+        </article>
+        <article class="text">
+          <h4 id="shit-shat">HEY YOU!...</h3>
+        </article>
+      </section>
+        <img src="./assets/left.png"  class="sides">
+        <div id="canvas"></div>
+        <img src="./assets/right.png" class="sides">
     </section>
-    <section class="side-bar">
-      <article class="score">
-        <h3>LEVEL: <span id="level"></span></h3>
-        <h3>SPEED: <span id="speed"></span></h3>
-        <h3>SCORE: <span id="score"></span></h3>
-      </article>
-      <article class="text">
-        <h4 id="shit-shat">HEY YOU!...</h3>
-      </article>
-    </section>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
     <script src="src/constants.js"></script>
+    <script src="src/Background.js"></script>
     <script src="src/Player.js"></script>
     <script src="src/Exit.js"></script>
     <script src="src/ObstacleGrow.js"></script>
     <script src="src/ObstacleBoost.js"></script>
     <script src="src/ObstacleMany.js"></script>
     <script src="src/Enemy.js"></script>
+  
+    
 
 
     <script src="src/Game.js"></script>

@@ -8,5 +8,23 @@ const score = document.getElementById("score");
 const shitShat = document.getElementById("shit-shat");
 let jabba;
 let kitty;
+let kittyGif;
 let diamond;
 let steak;
+let fireball 
+let fogo 
+let lock 
+let pill 
+let bgImage
+let hinten1
+let hinten2
+let links1 
+let links2 
+let rechts1
+let rechts2
+let vorne1 
+let vorne2 
+
+var sequenceAnimation;
+var glitch;
+

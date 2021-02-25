@@ -14,6 +14,7 @@
 
 class Game {
   constructor() {
+        this.background = new Background()
     this.player = new Player(180, 520);
     this.exit = new Exit();
     this.obstaclesGrow = [];
@@ -37,7 +38,8 @@ class Game {
     this.loose = false;
     this.speed = 0;
     this.score = 0;
-    this.won = false
+    this.won = false;
+
   }
 
   draw() {
@@ -58,13 +60,12 @@ class Game {
     if (this.level1 === true) {
       background("gray");
       this.player.draw();
-      this.player.color = "yellow";
+      this.player.color = "blue";
     }
 
     // **********  LEVEL 2
     if (this.level2 === true) {
-
-      background("yellow");
+      this.background.draw();
       this.player.draw();
       if (this.loose === false) {
         this.arrowDown();
@@ -73,21 +74,22 @@ class Game {
       // EXIT
       this.exit.draw();
       if (this.collisionCheck(this.player, this.exit)) {
-        shitShat.innerText = 
-          "whoop whoop next level is yet to come - do you fit through the door?"
-        
+        shitShat.innerText =
+          "whoop whoop next level is yet to come - do you fit through the door?";
+
         if (this.player.height === this.exit.height) {
           this.player.x -= 390;
           this.level2 = false;
           this.level3 = true;
           this.round1 = true;
-          shitShat.innerText = "YOU REACHED THE NEXT LEVEL. HIT IT!"
+          shitShat.innerText = "YOU REACHED THE NEXT LEVEL. HIT IT!";
         }
       }
 
       // OPENING TEXT
       if (frameCount === 90) {
-        shitShat.innerText =  "ARROWS BRING YOU TO THE NEXT LEVEL. FIND THE EXIT! ATTENTION. STUFF HAPPENING."
+        shitShat.innerText =
+          "ARROWS BRING YOU TO THE NEXT LEVEL. FIND THE EXIT! ATTENTION. STUFF HAPPENING.";
       }
 
       // OBSTACLESGROW
@@ -189,6 +191,8 @@ class Game {
         this.enemys.forEach((enemy) => {
           enemy.draw();
           if (this.collisionCheck(this.player, enemy)) {
+            kitty = fireball;
+            diamond = jabba;
             this.enemys.splice(0, 1);
             this.enemys.push(new Enemy(90, 100));
             this.enemys.push(new Enemy(185, 100));
@@ -207,7 +211,6 @@ class Game {
         this.enemys.forEach((enemy, index) => {
           enemy.draw();
           if (this.collisionCheck(this.player, enemy)) {
-
             this.enemys.splice(index, 1);
           }
         });
@@ -244,6 +247,8 @@ class Game {
       // ******** LEVEL3 ROUND 3
 
       if (this.round3 === true) {
+        jabba = jabba;
+        kitty = fireball;
         shitShat.innerText = "FUCK: MORE";
         // Draw & Collisioncheck
         this.enemys.forEach((enemy, index) => {
@@ -269,17 +274,14 @@ class Game {
                 this.loose = true;
                 this.round3 = false;
               }
-
             }
           });
-          
         }
-        if (this.enemys.length <=0) {
+        if (this.enemys.length <= 0) {
           this.won = true;
           this.round3 = false;
-          console.log("YOU WON")
+          console.log("YOU WON");
         }
-
       }
 
       // LOOSE
@@ -333,6 +335,12 @@ class Game {
   arrowDown() {
     // KEY IS DOWN
     if (keyIsDown(38)) {
+          if (frameCount % 50 === 0 ){
+      hinten1 = hinten2
+    } 
+    if (frameCount % 30 === 0) {
+      hinten1 = hinten1
+    }
       this.playersMany.forEach((player) => {
         player.moveUp(300);
       });
@@ -410,21 +418,20 @@ class Game {
   //   fill(a, b, c);
   // }
 
-
   scoreTrack() {
-  if (this.level2 === true){
-    level.innerText = "1"
-  };
- if (this.round1 === true){
-    level.innerText = "2"
-  }; 
-  if (this.round2 === true){
-    level.innerText = "3"
-  };
-  if (this.round3 === true){
-    level.innerText = "FINALEE"
-  };
-// can be a switch? dont know, forgot again
+    if (this.level2 === true) {
+      level.innerText = "1";
+    }
+    if (this.round1 === true) {
+      level.innerText = "2";
+    }
+    if (this.round2 === true) {
+      level.innerText = "3";
+    }
+    if (this.round3 === true) {
+      level.innerText = "FINALEE";
+    }
+    // can be a switch? dont know, forgot again
     score.innerText = this.score;
     if (frameCount % 60 === 0 && this.loose === false && this.won === false) {
       this.speed += 1;
