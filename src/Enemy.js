@@ -9,7 +9,7 @@ class Enemy {
 
   draw() {
     fill(this.col);
-    image(diamond, this.x, this.y, this.width, this.height);
+    image(jabba, this.x, this.y, this.width, this.height);
   }
 
 

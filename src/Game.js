@@ -14,7 +14,7 @@
 
 class Game {
   constructor() {
-        this.background = new Background()
+    this.background = new Background();
     this.player = new Player(180, 520);
     this.exit = new Exit();
     this.obstaclesGrow = [];
@@ -39,7 +39,6 @@ class Game {
     this.speed = 0;
     this.score = 0;
     this.won = false;
-
   }
 
   draw() {
@@ -47,6 +46,9 @@ class Game {
     clear();
 
     this.scoreTrack();
+    if (frameCount % 60 === 0) {
+      this.changePicture();
+    }
 
     // console.log("ScoreJump:" + this.player.scoreJump);
     // console.log("Enemys:" + this.enemys.length);
@@ -56,12 +58,12 @@ class Game {
     // console.log("ObstaclesBoots:" + this.obstaclesBoost.length);
     // console.log("PlayersMany:" + this.playersMany.length);
 
-    // ********** LEVEL 1
-    if (this.level1 === true) {
-      background("gray");
-      this.player.draw();
-      this.player.color = "blue";
-    }
+    // // ********** LEVEL 1 DOESNT NEED THIS ANY;OT
+    // if (this.level1 === true) {
+    //   background("gray");
+    //   this.player.draw();
+    //   this.player.color = "blue";
+    // }
 
     // **********  LEVEL 2
     if (this.level2 === true) {
@@ -123,7 +125,7 @@ class Game {
 
       // OBSTACLES BOOST
       if (
-        frameCount % 1200 === 0 ||
+        frameCount % 120 === 0 ||
         (frameCount > 1200 && frameCount % 400 === 0)
       ) {
         this.obstaclesBoost.push(new ObstacleBoost());
@@ -178,7 +180,9 @@ class Game {
     // **********  LEVEL 3
     if (this.level3 === true) {
       shitShat.innerText = "HIT THE THINGY, JUMPING IS HELPFUL. USE SPACE.";
-      background("red");
+      sides.style.display = "none";
+      sides2.style.display = "none";
+      bgImage = level2Image;
       this.turbo = true;
       this.player.drawLevel3Skills();
       this.player.draw();
@@ -191,8 +195,6 @@ class Game {
         this.enemys.forEach((enemy) => {
           enemy.draw();
           if (this.collisionCheck(this.player, enemy)) {
-            kitty = fireball;
-            diamond = jabba;
             this.enemys.splice(0, 1);
             this.enemys.push(new Enemy(90, 100));
             this.enemys.push(new Enemy(185, 100));
@@ -247,8 +249,6 @@ class Game {
       // ******** LEVEL3 ROUND 3
 
       if (this.round3 === true) {
-        jabba = jabba;
-        kitty = fireball;
         shitShat.innerText = "FUCK: MORE";
         // Draw & Collisioncheck
         this.enemys.forEach((enemy, index) => {
@@ -335,12 +335,12 @@ class Game {
   arrowDown() {
     // KEY IS DOWN
     if (keyIsDown(38)) {
-          if (frameCount % 50 === 0 ){
-      hinten1 = hinten2
-    } 
-    if (frameCount % 30 === 0) {
-      hinten1 = hinten1
-    }
+      if (frameCount % 50 === 0) {
+        hinten1 = hinten2;
+      }
+      if (frameCount % 30 === 0) {
+        hinten1 = hinten1;
+      }
       this.playersMany.forEach((player) => {
         player.moveUp(300);
       });
@@ -432,10 +432,22 @@ class Game {
       level.innerText = "FINALEE";
     }
     // can be a switch? dont know, forgot again
-    score.innerText = this.score;
+    if (this.level3 === true) {
+      score.innerText = "SCORE: "+ this.score;
+    }
+
     if (frameCount % 60 === 0 && this.loose === false && this.won === false) {
       this.speed += 1;
       speed.innerText = this.speed;
+    }
+  }
+
+  changePicture() {
+    if (kitty === hinten1) {
+      kitty = hinten2;
+    }
+    if (kitty === hinten2) {
+      kitty = hinten2;
     }
   }
 }

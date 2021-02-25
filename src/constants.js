@@ -6,6 +6,9 @@ const GRAVITY = 0.2;
 const speed = document.getElementById("speed");
 const score = document.getElementById("score");
 const shitShat = document.getElementById("shit-shat");
+const sides = document.getElementById("sides");
+const sides2 = document.querySelector(".sides");
+// couldn erase both... so strage workaround...
 let jabba;
 let kitty;
 let kittyGif;
@@ -25,6 +28,8 @@ let rechts2
 let vorne1 
 let vorne2 
 
-var sequenceAnimation;
-var glitch;
+// var sequenceAnimation;
+// var glitch;
 
+let sound1
+let sound2
