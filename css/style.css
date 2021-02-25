@@ -3,7 +3,7 @@ body {
   padding: 0px;
   font-family: Munro, Silkscreen, Courier, monospace;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   background-color: black;
 }
@@ -15,12 +15,11 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: auto;
 }
 
 .startscreen {
-  display: center;
-  height: 600px;
-
+width: 400px;
 }
 
 .side-bar {
