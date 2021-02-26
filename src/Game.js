@@ -303,7 +303,7 @@ class Game {
 
       if (this.loose === true) {
         shitShat.innerText = "YOU LOST";
-        shitShat.style.color = "aqua";
+        shitShat.style.color = "yellow";
         shitShat.style.fontSize = "45px";
 
         this.enemys.forEach((enemy) => {
@@ -317,9 +317,9 @@ class Game {
             enemy.width++;
             frameCount = 0;
           }
-          // if (frameCount >= 120) {
-          //   enemy.y = 350;
-          // }
+          if (frameCount >= 120) {
+            enemy.y = 300;
+          }
         });
       }
 
@@ -327,7 +327,7 @@ class Game {
 
       if (this.won === true) {
         shitShat.innerText = "YOU WIN";
-        shitShat.style.color = "aqua";
+        shitShat.style.color = "yellow";
         shitShat.style.fontSize = "45px";
 
         if (this.player.width < 300) {
