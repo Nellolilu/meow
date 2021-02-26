@@ -1,6 +1,6 @@
 class ObstacleGrow {
     constructor() {
-        this.x = random(0, WIDTH-10);
+        this.x = random(0, WIDTH-25);
         this.y = 0;
         this.width = 45
         this.height = 45

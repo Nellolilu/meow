@@ -39,7 +39,7 @@ class Enemy {
         this.x += 10
       } else {
         this.y -= 50;
-        this.x -= 20
+        this.x -= 10
     };
   }
   }

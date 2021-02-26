@@ -7,7 +7,7 @@ function preload() {
   // OBSTACLES
   steak = loadImage("./assets/rat1.png");
   pill = loadImage("./assets/fish.png");
-  keys = loadImage("./assets/platformPack_item014.png");
+  keys = loadImage("./assets/pill.png");
 
   // BACKGROUND
 
