@@ -85,6 +85,9 @@ class Game {
           this.level3 = true;
           this.round1 = true;
           shitShat.innerText = "YOU REACHED THE NEXT LEVEL. YOU LUCKY CAT!";
+          sound1.stop();
+            sound2.play();
+
         }
       }
 
@@ -95,6 +98,7 @@ class Game {
       }
 
       // OBSTACLESGROW
+      
       if (
         frameCount === 120 ||
         frameCount % 800 === 0 ||
@@ -105,11 +109,12 @@ class Game {
       this.obstaclesGrow.forEach((obstacle, index) => {
         obstacle.draw();
         if (this.collisionCheck(this.player, obstacle)) {
+
           this.many = false;
           if (this.player.width < XBORDER) this.player.width++;
           this.player.height = this.player.width;
           console.log("Ups");
-          shitShat.innerText = "Ups. Stop eating this shit. it just makes you fat.";
+          // shitShat.innerText = "still too big for the door?";
           this.turbo = false;
         }
         /// HERE TRY
@@ -117,7 +122,7 @@ class Game {
           if (this.collisionCheck(player, obstacle)) {
             if (player.width < XBORDER) player.width++;
             player.height = player.width;
-            shitShat.innerText = "still too big for the door?";
+            shitShat.innerText = "Ups. Stop eating this shit. it just makes you fat.";
           }
         });
         /////
@@ -201,7 +206,7 @@ class Game {
             this.enemys.splice(0, 1);
             this.enemys.push(new Enemy(90, 100));
             this.enemys.push(new Enemy(185, 100));
-            this.enemys.push(new Enemy(270, 220));
+            this.enemys.push(new Enemy(270, 210));
             this.round1 = false;
             this.round2 = true;
           }
@@ -237,13 +242,13 @@ class Game {
         }
         if (this.enemys.length <= 0) {
           this.enemys.push(new Enemy(60, 100));
-          this.enemys.push(new Enemy(310, 100));
-          this.enemys.push(new Enemy(280, 130));
-          this.enemys.push(new Enemy(210, 140));
-          this.enemys.push(new Enemy(140, 150));
-          this.enemys.push(new Enemy(165, 155));
-          this.enemys.push(new Enemy(230, 175));
-          this.enemys.push(new Enemy(280, 185));
+          // this.enemys.push(new Enemy(310, 100));
+          // this.enemys.push(new Enemy(280, 130));
+          // this.enemys.push(new Enemy(210, 140));
+          // this.enemys.push(new Enemy(140, 150));
+          // this.enemys.push(new Enemy(165, 155));
+          // this.enemys.push(new Enemy(230, 175));
+          // this.enemys.push(new Enemy(280, 185));
           this.round2 = false;
           this.round3 = true;
         }
@@ -318,6 +323,14 @@ class Game {
 
       if (this.won === true) {
         shitShat.innerText = "YOU WIN";
+          sound2.stop();
+          if (this.player.width < 300) {
+          if (this.player.x > 50 ) {
+            this.player.x--;
+          }
+          this.player.height++;
+          this.player.width++;
+        }
       }
 
       // LEVEL 3 closer:
@@ -444,11 +457,11 @@ class Game {
       level.innerText = "3";
     }
     if (this.round3 === true) {
-      level.innerText = "FINALEE";
+      level.innerText = "4";
     }
     // can be a switch? dont know, forgot again
     if (this.level3 === true) {
-      score.innerText = "SCORE: " + this.score;
+      score.innerText = "JUMPSCORE: " + this.score;
     }
 
     if (frameCount % 60 === 0 && this.loose === false && this.won === false) {
