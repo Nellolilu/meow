@@ -37,6 +37,8 @@ function preload() {
   vorne1f = loadImage("./assets/kVorne1.png");
   sound1 = loadSound("./assets/level1_opt1.mp3");
   sound2 = loadSound("./assets/level2_opt1.mp3");
+  soundCat = loadSound("./assets/pigS.mp3");
+  soundPig = loadSound("./assets/catS.mp3");
 
   // sequenceAnimation = loadAnimation("./assets/kHinten1.png", "./assets/kHinten2.png");
   // glitch = loadAnimation("data/dog.png", "data/horse.png", "data/cat.png", "data/snake.png");
@@ -46,7 +48,8 @@ function setup() {
   let canvas = createCanvas(WIDTH, HEIGHT);
   canvas.parent("canvas");
   sound1.play();
-  sound1.setVolume(0.5);
+  sound1.setVolume(0.1);
+  sound2.setVolume(0.1)
 
   // sound1.stop();
   // sound2.play();

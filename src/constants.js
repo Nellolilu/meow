@@ -41,3 +41,5 @@ let vorne1f
 
 let sound1
 let sound2
+let soundCat
+let soundPig

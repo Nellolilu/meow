@@ -1,6 +1,5 @@
 class Player {
   constructor(startingX, startingY) {
-
   
     // this.x = WIDTH / 2.25
     // this.y = YBORDER
@@ -58,6 +57,7 @@ class Player {
   keyPressed() {
     if (keyCode === 32) {
       this.jump();
+      if (!game.loose && !game.won )
       game.score +=1
     }
   }

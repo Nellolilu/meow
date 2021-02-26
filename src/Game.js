@@ -85,9 +85,10 @@ class Game {
           this.level3 = true;
           this.round1 = true;
           shitShat.innerText = "YOU REACHED THE NEXT LEVEL. YOU LUCKY CAT!";
-          sound1.stop();
-            sound2.play();
-
+          this.changeMusic();
+          // sound1.stop();
+          //   sound2.play();
+          //   sound2.loop()
         }
       }
 
@@ -98,7 +99,7 @@ class Game {
       }
 
       // OBSTACLESGROW
-      
+
       if (
         frameCount === 120 ||
         frameCount % 800 === 0 ||
@@ -109,7 +110,6 @@ class Game {
       this.obstaclesGrow.forEach((obstacle, index) => {
         obstacle.draw();
         if (this.collisionCheck(this.player, obstacle)) {
-
           this.many = false;
           if (this.player.width < XBORDER) this.player.width++;
           this.player.height = this.player.width;
@@ -122,7 +122,8 @@ class Game {
           if (this.collisionCheck(player, obstacle)) {
             if (player.width < XBORDER) player.width++;
             player.height = player.width;
-            shitShat.innerText = "Ups. Stop eating this shit. it just makes you fat.";
+            shitShat.innerText =
+              "Ups. Stop eating this shit. it just makes you fat.";
           }
         });
         /////
@@ -175,7 +176,8 @@ class Game {
             playerMany.width = 40;
             playerMany.height = 40;
             console.log("who is how??? Go for the pill please!");
-            shitShat.innerText = "who is how??? I feel dizzy - was something wrong with the fish? Go for the pill please!";
+            shitShat.innerText =
+              "who is how??? I feel dizzy - was something wrong with the fish? Go for the pill please!";
           }
         });
         if (obstacle.y >= HEIGHT) this.obstaclesMany.splice(index, 1);
@@ -242,13 +244,13 @@ class Game {
         }
         if (this.enemys.length <= 0) {
           this.enemys.push(new Enemy(60, 100));
-          // this.enemys.push(new Enemy(310, 100));
-          // this.enemys.push(new Enemy(280, 130));
-          // this.enemys.push(new Enemy(210, 140));
-          // this.enemys.push(new Enemy(140, 150));
-          // this.enemys.push(new Enemy(165, 155));
-          // this.enemys.push(new Enemy(230, 175));
-          // this.enemys.push(new Enemy(280, 185));
+          this.enemys.push(new Enemy(310, 100));
+          this.enemys.push(new Enemy(280, 130));
+          this.enemys.push(new Enemy(210, 140));
+          this.enemys.push(new Enemy(140, 150));
+          this.enemys.push(new Enemy(165, 155));
+          this.enemys.push(new Enemy(230, 175));
+          this.enemys.push(new Enemy(280, 185));
           this.round2 = false;
           this.round3 = true;
         }
@@ -301,11 +303,13 @@ class Game {
 
       if (this.loose === true) {
         shitShat.innerText = "YOU LOST";
+        shitShat.style.color = "aqua";
+        shitShat.style.fontSize = "45px";
 
         this.enemys.forEach((enemy) => {
           enemy.draw();
           if (enemy.width < 300) {
-            if (enemy.x > 50 ) {
+            if (enemy.x > 50) {
               enemy.x--;
             }
 
@@ -313,9 +317,9 @@ class Game {
             enemy.width++;
             frameCount = 0;
           }
-          if (frameCount >= 120) {
-            enemy.y = 350;
-          }
+          // if (frameCount >= 120) {
+          //   enemy.y = 350;
+          // }
         });
       }
 
@@ -323,9 +327,11 @@ class Game {
 
       if (this.won === true) {
         shitShat.innerText = "YOU WIN";
-          sound2.stop();
-          if (this.player.width < 300) {
-          if (this.player.x > 50 ) {
+        shitShat.style.color = "aqua";
+        shitShat.style.fontSize = "45px";
+
+        if (this.player.width < 300) {
+          if (this.player.x > 50) {
             this.player.x--;
           }
           this.player.height++;
@@ -470,6 +476,17 @@ class Game {
     }
   }
 
+  changeMusic() {
+    if (this.level3) {
+      sound1.stop();
+      sound2.play();
+      sound2.loop();
+    }
+    // if (this.won) {
+    //   sound2.stop();
+    //   soundCat.play()
+    // }
+  }
   //   changePicture() {
   //     if (kitty === hinten1) {
   //       kitty = hinten2;
