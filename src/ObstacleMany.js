@@ -1,19 +1,13 @@
 class ObstacleMany {
-    constructor() {
-        this.x = random(0, WIDTH-35);
-        this.y = 0;
-        this.width = 50
-        this.height = 20
+  constructor() {
+    this.x = random(0, WIDTH - 35);
+    this.y = 0;
+    this.width = 50;
+    this.height = 20;
+  }
 
-    }
-
-
-    draw() {
-        fill("pink");
-        this.y += 0.7;
-        // speed   
-        image(pill, this.x, this.y, this.width, this.height);
-    }
-
-
+  draw() {
+    this.y += 0.7;
+    image(fish, this.x, this.y, this.width, this.height);
+  }
 }

@@ -1,48 +1,32 @@
 class Player {
   constructor(startingX, startingY) {
-  
-    // this.x = WIDTH / 2.25
-    // this.y = YBORDER
     this.x = startingX;
     this.y = startingY;
     this.width = 40;
     this.height = 40;
     this.jumpCount = 0;
     this.velocity = 0;
-    // check to make a first up then down;
-    this.floor = YBORDER
-    this.image = true
-    // this.color = "white"
+    this.floor = YBORDER;
+    this.image = true;
   }
 
   draw() {
-    // fill(this.color);
-  
     image(kitty, this.x, this.y, this.width, this.height);
-
     if (frameCount % 15 == 0) {
-      console.log("change")
-      this.image = !this.image; 
+      this.image = !this.image;
       if (this.image) {
         hinten1 = hinten2;
         vorne1 = vorne2;
         rechts1 = rechts2;
-        links1 = links2
-
+        links1 = links2;
       } else {
         hinten1 = hinten1f;
-        vorne1 = vorne1f
+        vorne1 = vorne1f;
         rechts1 = rechts1f;
-        links1 = links1f
+        links1 = links1f;
       }
-    };
-
-
-
-  };
-
-
-
+    }
+  }
 
   drawLevel3Skills() {
     this.velocity += GRAVITY;
@@ -54,11 +38,13 @@ class Player {
     }
   }
 
+  // // MOVE AROUND
+
+  // JUMPS
   keyPressed() {
     if (keyCode === 32) {
       this.jump();
-      if (!game.loose && !game.won )
-      game.score +=1
+      if (!game.loose && !game.won) game.score += 1;
     }
   }
 
@@ -71,9 +57,9 @@ class Player {
     this.velocity -= 5;
   }
 
-
+  // WALKS
   moveUp(steps) {
-    kitty = hinten1 
+    kitty = hinten1;
     this.y -= HEIGHT / steps;
     if (this.y < 0) {
       this.y = 0;
@@ -81,7 +67,7 @@ class Player {
   }
 
   moveLeft(steps) {
-    kitty = rechts1
+    kitty = rechts1;
     this.x -= WIDTH / steps;
     if (this.x < 0) {
       this.x = 0;
@@ -89,7 +75,7 @@ class Player {
   }
 
   moveDown(steps) {
-    kitty = vorne1
+    kitty = vorne1;
     this.y += HEIGHT / steps;
     if (this.y + this.height > HEIGHT) {
       this.y = HEIGHT - this.height;
@@ -97,28 +83,10 @@ class Player {
   }
 
   moveRight(steps) {
-    kitty = links1
+    kitty = links1;
     this.x += WIDTH / steps;
     if (this.x + this.width > WIDTH) {
       this.x = WIDTH - this.width;
     }
   }
-
-
-
-  moveToCenter() {
-    if (this.y > 300) {
-      this.y -= 10;
-    }
-    if (this.x < 200) {
-      this.x +=10
-    }
-    if (this.y < 300) {
-      this.y += 10
-    }
-    if (this.x > 200) {
-      this.x -=10
-    }
-  }
-
 }

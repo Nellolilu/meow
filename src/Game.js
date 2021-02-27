@@ -1,16 +1,5 @@
-// ***** BUGS
-// Change back the speed / turbo doesnt work
-// CHECK WINNING
-// create buttons & Pictures for info & Score & so on
-// Check out dom Manipulation
-// key down deaktiv bei loose!
-
-// ***** STYLE DECISIONS
-
-// MANY are moved before seen - maybe make a different class, and new Push or even create a back to origin function
-// Player is coming down from left
-// maybe a reduce for enemy
-// CAN YOU CHANGE WIDTH OF CANVAS? CHANGE WIDTH = Make it 1000 and other borders for the Player in other Levels??
+// ADITIONS THAT DIDNT WORK:
+// soundswitch at the end (pig/cat)
 
 class Game {
   constructor() {
@@ -28,7 +17,6 @@ class Game {
     ];
     this.test = [new Player(100, 100)];
     this.turbo = false;
-    this.level1 = false;
     this.level2 = true;
     this.level3 = false;
     this.enemys = [new Enemy(300, 100)];
@@ -45,25 +33,7 @@ class Game {
   draw() {
     // **********  BASIC SETUP
     clear();
-
     this.scoreTrack();
-    if (frameCount % 60 === 0) {
-    }
-
-    // console.log("ScoreJump:" + this.player.scoreJump);
-    // console.log("Enemys:" + this.enemys.length);
-    // console.log("Framecount:" + frameCount);
-    // console.log("ObstaclesMany:" + this.obstaclesGrow.length);
-    // console.log("ObstaclesGrow:" + this.obstaclesGrow.length);
-    // console.log("ObstaclesBoots:" + this.obstaclesBoost.length);
-    // console.log("PlayersMany:" + this.playersMany.length);
-
-    // // ********** LEVEL 1 DOESNT NEED THIS ANY;OT
-    // if (this.level1 === true) {
-    //   background("gray");
-    //   this.player.draw();
-    //   this.player.color = "blue";
-    // }
 
     // **********  LEVEL 2
     if (this.level2 === true) {
@@ -86,9 +56,6 @@ class Game {
           this.round1 = true;
           shitShat.innerText = "YOU REACHED THE NEXT LEVEL. YOU LUCKY CAT!";
           this.changeMusic();
-          // sound1.stop();
-          //   sound2.play();
-          //   sound2.loop()
         }
       }
 
@@ -113,11 +80,9 @@ class Game {
           this.many = false;
           if (this.player.width < XBORDER) this.player.width++;
           this.player.height = this.player.width;
-          console.log("Ups");
-          // shitShat.innerText = "still too big for the door?";
           this.turbo = false;
         }
-        /// HERE TRY
+        // ON MANY
         this.playersMany.forEach((player) => {
           if (this.collisionCheck(player, obstacle)) {
             if (player.width < XBORDER) player.width++;
@@ -126,7 +91,7 @@ class Game {
               "Ups. Stop eating this shit. it just makes you fat.";
           }
         });
-        /////
+        // ELSE
         if (obstacle.y >= HEIGHT) this.obstaclesGrow.splice(index, 1);
       });
       // OBSTACLES BOOST
@@ -143,7 +108,7 @@ class Game {
           this.turbo = true;
           shitShat.innerText = "quick, MOVE!";
         }
-        /// HERE TRY
+        // ON MANY
         this.playersMany.forEach((player) => {
           if (this.collisionCheck(player, obstacle)) {
             this.many = false;
@@ -151,9 +116,10 @@ class Game {
             shitShat.innerText = "Go,go, go ,go!";
           }
         });
-        /////
+        // ELSE
         if (obstacle.y >= HEIGHT) this.obstaclesBoost.splice(index, 1);
       });
+
       // OBSTACLES MANY
       if (
         (frameCount > 24 && frameCount % 640 === 0) ||
@@ -168,14 +134,12 @@ class Game {
           this.player.height = 40;
           this.many = true;
           this.turbo = false;
-          console.log("AWWW - who am I");
           shitShat.innerText = "AWWW - who am I";
         }
         this.playersMany.forEach((playerMany) => {
           if (this.collisionCheck(playerMany, obstacle)) {
             playerMany.width = 40;
             playerMany.height = 40;
-            console.log("who is how??? Go for the pill please!");
             shitShat.innerText =
               "who is how??? I feel dizzy - was something wrong with the fish? Go for the pill please!";
           }
@@ -270,7 +234,6 @@ class Game {
         if (this.enemys.length < 5 && this.enemys.length > 2) {
           this.enemys.push(new Enemy(110, 200));
           this.enemys.push(new Enemy(160, 130));
-          // this.enemys.push(new Enemy(280, 200));
           this.enemys.push(new Enemy(300, 330));
         }
         // move to center
@@ -286,7 +249,6 @@ class Game {
                 this.enemys.splice(0, this.enemys.length - 1);
               }
               if ((this.enemys.length = 1)) {
-                // enemy.col = "yellow";
                 this.loose = true;
                 this.round3 = false;
               }
@@ -445,12 +407,6 @@ class Game {
     }
   }
 
-  // randomColor() {
-  //   let a = random(0, 255);
-  //   let b = random(0, 255);
-  //   let c = random(0, 255);
-  //   fill(a, b, c);
-  // }
 
   scoreTrack() {
     if (this.level2 === true) {
@@ -482,17 +438,6 @@ class Game {
       sound2.play();
       sound2.loop();
     }
-    // if (this.won) {
-    //   sound2.stop();
-    //   soundCat.play()
-    // }
+ 
   }
-  //   changePicture() {
-  //     if (kitty === hinten1) {
-  //       kitty = hinten2;
-  //     }
-  //     if (kitty === hinten2) {
-  //       kitty = hinten2;
-  //     }
-  //   }
 }

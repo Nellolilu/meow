@@ -4,15 +4,12 @@ class Enemy {
     this.y = startingY;
     this.height = 40;
     this.width = 40;
-    this.col = "yellow";
-    this.position = true
+    this.position = true;
   }
 
   draw() {
-    fill(this.col);
-    image(jabba, this.x, this.y, this.width, this.height);
+    image(pig, this.x, this.y, this.width, this.height);
   }
-
 
   moveToCenter() {
     this.changePosition();
@@ -20,28 +17,27 @@ class Enemy {
       this.y -= 15;
     }
     if (this.x < 200) {
-      this.x +=10
+      this.x += 10;
     }
     if (this.y < 300) {
-      this.y += 15
+      this.y += 15;
     }
     if (this.x > 200) {
-      this.x -=10
+      this.x -= 10;
     }
   }
 
   changePosition() {
     if (frameCount % 15 == 0) {
-      console.log("change")
-      this.position = !this.position; 
+      console.log("change");
+      this.position = !this.position;
       if (this.position) {
         this.y += 30;
-        this.x += 10
+        this.x += 10;
       } else {
         this.y -= 50;
-        this.x -= 10
-    };
+        this.x -= 10;
+      }
+    }
   }
-  }
-
 }

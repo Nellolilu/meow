@@ -1,45 +1,52 @@
+// // CONSTRUCTORS
 const WIDTH = 400;
 const HEIGHT = 600;
 const XBORDER = WIDTH - 50;
 const YBORDER = HEIGHT - 50;
 const GRAVITY = 0.2;
+
+// // DOM
 const speed = document.getElementById("speed");
 const score = document.getElementById("score");
 const shitShat = document.getElementById("shit-shat");
+// couldn erase both... so strage workaround...
 const sides = document.getElementById("sides");
 const sides2 = document.querySelector(".sides");
-// couldn erase both... so strage workaround...
-let jabba;
+
+// // IMAGES
+
+//PLAYER
 let kitty;
-let kittyGif
+// ENEMY
+let pig;
+// OBSTACLES
+let rat;
+let fish;
+let pill;
 
-let diamond;
-let steak;
-let fireball 
-let fogo 
-let lock 
-let pill 
-let bgImage
-let level2Image
+//BACKGROUND
+let bgImage;
+let level2Image;
 
-let hinten1
-let hinten1f
-let hinten2
+//PLAYER ANIMATION
+let hinten1;
+let hinten1f;
+let hinten2;
 
-let links1 
-let links2 
-let links1f
+let links1;
+let links2;
+let links1f;
 
-let rechts1
-let rechts2
-let rechts1f
+let rechts1;
+let rechts2;
+let rechts1f;
 
-let vorne1 
-let vorne2 
-let vorne1f
+let vorne1;
+let vorne2;
+let vorne1f;
 
-
-let sound1
-let sound2
-let soundCat
-let soundPig
+// // SOUND
+let sound1;
+let sound2;
+let soundCat;
+let soundPig;
