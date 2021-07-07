@@ -14,7 +14,7 @@ Find the entry to the second level and **fight** *and jump with space* all pigeo
 For best resolution play with the browser on full screen and turn up the volume!
  
  
-[PLAY IT HERE](https://nellolilu.github.io/project1/game.html)
+[PLAY IT HERE](https://nellolilu.github.io/meow)
 
  [![game](https://user-images.githubusercontent.com/74717391/124464782-e7df4700-dd94-11eb-8813-a4d9f9a3b24c.PNG)
 
